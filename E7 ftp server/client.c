@@ -25,11 +25,11 @@ int main()
 
     while(1)
     {
-    	printf("	Choose one of the available options :  \n");
+    	printf("\n	Choose one of the available options :  \n\n");
     	printf("1 - display The Contents of the server  .\n");
     	printf("2 - download a File from The Server . \n");
     	printf("3 - Quit .\n");
-    	printf("> ");
+    	printf("\n> ");
     	scanf("%d",&choix);
     	switch(choix)
     	{
@@ -37,7 +37,7 @@ int main()
     			strcpy(buffer,"1");
     			send(socketDes,buffer,sizeof(buffer),0);
 
-				printf("the Content of the working folder in the server is : \n");
+				printf("\nthe Content of the working folder in the server is : \n");
 		    	result = read(socketDes,message,sizeof(message));
 		    
 		    	printf("%s\n",message);		
@@ -47,7 +47,7 @@ int main()
     			strcpy(buffer,"2");
 				send(socketDes,buffer,sizeof(buffer),0);
 
-    			printf("Enter The Name of the File :  ");
+    			printf("\nEnter The Name of the File :  ");
     			scanf("%s",message);
 
     			send(socketDes,message,sizeof(message),0);
@@ -88,7 +88,7 @@ int main()
 		    		
 		    		if(FileLenght == bytesReceived)
 		    		{
-		    			printf("File Received Successfully ... \n");
+		    			printf("\nFile Received Successfully ... \n");
 		    			printf("%d bytes received , %d File Lenght \n",bytesReceived,FileLenght);
 		    			fclose(file);
 		    			break;
