@@ -10,7 +10,10 @@ void transfer(int sock) {
   struct timeval tv;
   tv.tv_sec = 1;
   tv.tv_usec = 0;
-  setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&tv, sizeof tv);
+
+  setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO,
+   (const char *)&tv, sizeof tv);
+
   printf("\nSend\tFrame status\tACK status\n");
   int *n, i = 0, j, old, k = 0;
   n = &i;
@@ -42,13 +45,11 @@ int main(int argc, char const *argv[]) {
   int opt = 1, n;
   int addrlen = sizeof(address);
 
-  // Creating socket file descriptor
   if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
     perror("socket failed");
     exit(EXIT_FAILURE);
   }
 
-  // Forcefully attaching socket to the port 8080
   if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
                  sizeof(opt))) {
     perror("setsockopt");
